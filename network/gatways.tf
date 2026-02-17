@@ -7,7 +7,8 @@ resource "aws_internet_gateway" "gw" {
 }
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.public_1.id
+  subnet_id     = aws_subnet.public1.id
+  
 
   tags = {
     Name = "public-nat-gateway"
