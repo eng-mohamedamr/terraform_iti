@@ -58,14 +58,6 @@ resource "aws_security_group" "sg2" {
     protocol    = "tcp"
     cidr_blocks = [var.vpc_cidr_block]
   }
-  # outbound traffic allow reach anything through the internet on any protocol and from any port to any port
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   tags = {
     Name = "route-group-2"
   }
