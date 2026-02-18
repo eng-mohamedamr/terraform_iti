@@ -1,9 +1,9 @@
 resource "aws_route_table" "public" {
-  vpc_id = module.aws_vpc.test.id
+  vpc_id = module.network.vpc_id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = module.aws_internet_gateway.gw.id
+    gateway_id = module.network.gateway_id
   }
 
   tags = {
@@ -11,11 +11,11 @@ resource "aws_route_table" "public" {
   }
 }
 resource "aws_route_table" "private" {
-  vpc_id = module.aws_vpc.test.id
+  vpc_id = module.network.vpc_id
 
   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = module.aws_nat_gateway.nat.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = module.network.nat_gateway_id
   }
 
   tags = {
@@ -23,11 +23,11 @@ resource "aws_route_table" "private" {
   }
 }
 resource "aws_route_table_association" "public_1" {
-  subnet_id      = module.aws_subnet.public_1.id
+  subnet_id      = module.network.public1_id
   route_table_id = aws_route_table.public.id
 }
 resource "aws_route_table_association" "public_2" {
-  subnet_id      = module.aws_subnet.public_2.id
+  subnet_id      = module.network.public2_id
   route_table_id = aws_route_table.public.id
 }
 resource "aws_route_table_association" "private_1" {
