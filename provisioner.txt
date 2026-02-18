@@ -1,0 +1,1 @@
+public ip of bastion is 3.87.24.61
