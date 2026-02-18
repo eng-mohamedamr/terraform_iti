@@ -37,6 +37,8 @@ resource "aws_security_group" "sg1" {
   }
 }
 
+      # security group to allow the bastion server to reach the instance that in the private subnet
+
 resource "aws_security_group" "sg2" {
   name        = var.security_group_name2
   description = "Allow SSH, HTTP and HTTPS"
@@ -51,8 +53,8 @@ resource "aws_security_group" "sg2" {
   }
   # allow SSH FROM my cidr
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = [var.vpc_cidr_block]
   }
